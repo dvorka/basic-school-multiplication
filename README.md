@@ -1,6 +1,6 @@
 # Basic School Multiplication
 
-An HTML page to test basic school multiplication tables.
+Simple single page HTML applications for testing basic school additions/substractions and multiplication tables.
 
 ![Screenshot](./screenshot.png)
 
