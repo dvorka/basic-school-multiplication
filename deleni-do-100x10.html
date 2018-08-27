@@ -4,16 +4,15 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <meta name="Author" content="Martin Dvorak"/>
-    <title>Nábosilka</title>
+    <title>Dělení do 100x10</title>
 <script type="text/javascript">
   var correctCounter = 0;
   var incorrectCounter = 0;
 
+  var bossResult = 1
+
   function enterResult() {
     // check
-    var o1=document.getElementById("operand1").innerHTML
-    var o2=document.getElementById("operand2").innerHTML
-    var bossResult = o1*o2;
     var result = document.getElementById("result").value;
     var resultSpan = document.getElementById("correctness");
     if(bossResult == result) {
@@ -30,8 +29,9 @@
     setSpanValue("total", correctCounter+incorrectCounter);    
 
     // prepare new example
-    setSpanValue("operand1", getRandomNumber(10)); // choose 1 - 10 for nabosilka up to 1 - 10
+    bossResult = getRandomNumber(10)*10; // choose 1 - 10 for nabosilka up to 1 - 10
     setSpanValue("operand2", getRandomNumber(10));
+    setSpanValue("operand1", bossResult*document.getElementById("operand2").innerHTML);
     document.getElementById("result").value="";
     document.getElementById("result").focus();
   }
@@ -51,10 +51,10 @@
   </head>
   <body style="font-size: 30px;">
     <center>
-<h1>Nábosilka</h1>
+<h1>Dělení do 100x10</h1>
 
 <span id="operand1">1</span>
-*
+/
 <span id="operand2">1</span>
 =
 <input id="result" type="text" value="1" style="width: 50px; font-size: 30px;">

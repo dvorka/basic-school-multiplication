@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <meta name="Author" content="Martin Dvorak"/>
+    <title>Odčítání do 1000</title>
+<script type="text/javascript">
+  var correctCounter = 0;
+  var incorrectCounter = 0;
+
+  function enterResult() {
+    // check
+    var o1=document.getElementById("operand1").innerHTML
+    var o2=document.getElementById("operand2").innerHTML
+    var bossResult = o1-o2;
+    var result = document.getElementById("result").value;
+    var resultSpan = document.getElementById("correctness");
+    if(bossResult == result) {
+      setSpanValue("correctness", "Správně :-)");
+      resultSpan.style.backgroundColor="#090";
+      correctCounter++;
+      setSpanValue("correct", correctCounter);
+    } else {
+      setSpanValue("correctness", "Chybně :-(");
+      resultSpan.style.backgroundColor="#900";
+      incorrectCounter++;
+      setSpanValue("incorrect", incorrectCounter);
+    }
+    setSpanValue("total", correctCounter+incorrectCounter);    
+
+    // prepare new example
+    o1 = getRandomNumber(500);
+    o2 = getRandomNumber(99);
+    if(o2>o1) {
+      var o = o1;
+      o1 = o2;
+      o2 = o;
+    }
+    setSpanValue("operand1", o1);
+    setSpanValue("operand2", o2);
+    document.getElementById("result").value="";
+    document.getElementById("result").focus();
+  }
+
+  function getRandomNumber(limit) {
+    return Math.floor(Math.random() * limit)+1;  
+  }
+
+  function setSpanValue(spanName, v) {
+    var span = document.getElementById(spanName);
+    while( span.firstChild ) {
+      span.removeChild( span.firstChild );
+    }
+    span.appendChild(document.createTextNode(v));
+  }
+</script>
+  </head>
+  <body style="font-size: 30px;">
+    <center>
+<h1>Odčítání do 1000</h1>
+
+<span id="operand1">1</span>
+-
+<span id="operand2">1</span>
+=
+<input id="result" type="text" value="0" style="width: 50px; font-size: 30px;">
+<button type="button" onclick="enterResult()" style="font-size: 30px;">Zkontroluj</button>
+<br/>
+<br/>
+<span id="correctness" style="color: #fff; font-weight: bolder; padding: 10px;"></span>
+<br/>
+<br/>
+Skóre <span id="total">0</span> příkladů: <span id="correct" style="color: #090">0</span>/<span id="incorrect" style="color: #900">0</span>
+
+</center>
+</body>
+</html>
